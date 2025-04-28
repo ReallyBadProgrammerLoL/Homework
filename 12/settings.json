@@ -1,0 +1,8 @@
+{
+    "num_passwords": 5,
+    "min_length": 8,
+    "max_length": 12,
+    "min_digits": 1,
+    "min_special_chars": 1,
+    "special_chars": "!@#$%^&*"
+}
