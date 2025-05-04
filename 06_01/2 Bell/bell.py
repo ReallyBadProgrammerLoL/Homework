@@ -1,6 +1,11 @@
 class Bell:
+    __obj_count = 0
     def __init__(self):
         self.__next_sound = "ding"
+        type(self).__obj_count = type(self).__obj_count + 1
+
+    def __del__(self):
+        type(self).__obj_count = type(self).__obj_count - 1
 
     def sound(self):
         print(self.__next_sound)
@@ -8,6 +13,12 @@ class Bell:
             self.__next_sound = "dong"
         else:
             self.__next_sound = "ding"
+
+    @classmethod
+    def get_obj_count(cls):
+        return cls.__obj_count
+
+
 
 def test_bell():
     bell = Bell()
@@ -26,4 +37,8 @@ if __name__ == "__main__":
     objBell = Bell()
     #print(Bell._Bell__next_sound)
     print(objBell._Bell__next_sound)
-    test_bell()
+    print(Bell.get_obj_count())
+    obj1 = Bell()
+    obj2 = Bell()
+    print(obj1.get_obj_count())
+    print(Bell.get_obj_count())

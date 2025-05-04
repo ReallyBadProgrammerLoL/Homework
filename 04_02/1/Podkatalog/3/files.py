@@ -1,6 +1,7 @@
 import os
 import shutil
 from pathlib import Path
+import time
 
 print(f"#1. {os.name}")
 
@@ -72,12 +73,50 @@ os.getgid
 print("\n#7 Поддерживаемые типы архивов\n", shutil.get_archive_formats())
 
 
-shutil.unpack_archive("C:\\Users\\Руслан\\PycharmProjects\\PythonProject1\\04_02\\1\\Podkatalog\\3\\dearchive\\some.zip", "extracted_files")
+shutil.unpack_archive("'../../../3/dearchive/some.zip", "extracted_files")
+
 try:
-    shutil.unpack_archive("C:\\Users\\Руслан\\PycharmProjects\\PythonProject1\\04_02\\1\\Podkatalog\\3\\dearchive\\test.7z", "extracted_files")
+    shutil.unpack_archive("../../../3/dearchive/test.7z", "extracted_files")
 except IOError as e:
     print(e)
 
 
+temp_dir = "temp_pack_dir"
+os.makedirs(temp_dir, exist_ok=True)
 
+for root, dirs, files in os.walk('../../..'):
+    for file in files:
+        if file.startswith('a'):
+            src_path = os.path.join(root, file)
+            dst_path = os.path.join(temp_dir, file)
+            try:
+                for attempt in range(3):
+                    try:
+                        shutil.copy2(src_path, dst_path)
+                        print(f"Добавлен: {src_path}")
+                        break
+                    except PermissionError:
+                        if attempt == 2:
+                            print(f"Ошибка: файл {src_path} занят. Пропускаем.")
+                            continue
+                        time.sleep(1)
+            except Exception as e:
+                print(f"Неизвестная ошибка с {src_path}: {e}")
 
+if os.listdir(temp_dir):
+    shutil.make_archive("archive_name", 'zip', temp_dir)
+    print(f"\nАрхив создан: {"archive_name"}.zip")
+else:
+    print("\nФайлы по маске не найдены!")
+
+for attempt in range(3):
+    try:
+        shutil.rmtree(temp_dir)
+        break
+    except PermissionError:
+        if attempt == 2:
+            print(f"Не удалось удалить {temp_dir}. Удалите вручную.")
+        time.sleep(1)
+
+print(os.path.abspath("archive_name.zip"))
+print(os.path.exists("C:/Users/Руслан/PycharmProjects/PythonProject1"))
