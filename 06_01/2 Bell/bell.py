@@ -15,7 +15,7 @@ def test_bell():
     assert bell._Bell__next_sound == "ding", "Ошибка 1"
 
     bell.sound()
-    assert bell._Bell__next_sound == "dong", "Ошибка 2"
+    assert bell._Bell__next_sound == "dong", "Ошибка Podkatalog"
 
     bell.sound()
     assert bell._Bell__next_sound == "ding", "Ошибка 3"

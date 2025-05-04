@@ -7,7 +7,7 @@ pd.set_option('display.max_columns', None)
 
 LABEL_MASS = {
     '1': 'dos',
-    '2': 'u2r',
+    'Podkatalog': 'u2r',
     '3': 'r2l',
     '4': 'r2l',
     '5': 'r2l',
@@ -109,7 +109,7 @@ df['protocol_type'].value_counts().plot.pie(autopct='%1.1f%%')
 plt.savefig('protocols.jpg')
 plt.close()
 
-# 2. Типы атак (#4)
+# Podkatalog. Типы атак (#4)
 plt.figure()
 df_attacks['label_type_from_id'].value_counts().plot.bar()
 plt.savefig('attack_types.jpg')
