@@ -1,27 +1,9 @@
-from overload import overload
-
-
 class ExtList:
-    @overload
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], (list, tuple, set)):
             self.__lst = list(args[0])
         else:
             self.__lst = list(args)
-
-    @__init__.add
-    def __init__(self) -> None:
-        ...
-
-    @__init__.add
-    def __init__(self, iterable: Union[list, tuple, set]) -> None:
-        ...
-
-    @__init__.add
-    def __init__(self, *args: object) -> None:
-        ...
-
-
     def __len__(self):
         return len(self.__lst)
 
