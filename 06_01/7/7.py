@@ -1,4 +1,4 @@
-import geometry.planimetry, geometry.stereometry
+import geometry.stereometry
 '''import sys
 from pprint import pprint
 pprint(sys.path)'''
