@@ -9,4 +9,4 @@ print(a.square(), b.V())
 #до создания __init__.py
 #import geometry
 #b = geometry.stereometry.Ball(5)
-'''AttributeError: module 'geometry' has no attribute 'stereometry. Происходит из-за того, что не указан конкретный файл stereometry'''
+#'''AttributeError: module 'geometry' has no attribute 'stereometry. Происходит из-за того, что не указан конкретный файл stereometry'''
